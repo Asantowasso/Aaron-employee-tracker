@@ -22,3 +22,12 @@ j_title VARCHAR(30) NOT NULL,
 d_id INT NOT NULL,
 salary DECIMAL (10,2)
 )
+
+-- employee tabe with id, first name, last name, role id and manager id
+
+CREATE TABLE employee (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    manager_id INT NOT NULL
+)
