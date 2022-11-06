@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 
   user: 'root',
 
-  password: 'password',
+  password: 'rootroot',
   database: 'org_db'
 });
 
@@ -49,20 +49,29 @@ const userOptions = () => {
           }
         })
 };
-userOptions();
+// userOptions();
 
 function viewDepartments(){
   var query = "SELECT id, d_name FROM department";
 
-  connection.query(query)
+  connection.query(query,function (error, results) {
+    console.table(results)
+    userOptions()
+    // error will be an Error if one occurred during the query
+    // results will contain the results of the query
+    // fields will contain information about the returned results fields (if any)
+  });
 
 }
 
 function viewRoles(){
-  var query = "SELECT id, j_title, d_id, salary FROM roles"
+  var query = "SELECT role.id, j_title, salary, d_name FROM role JOIN department ON role.d_id = department.id"
 
-  connection.query(query)
-  
+  connection.query(query,function (err, results){
+    console.table(results)
+    userOptions()
+  })
+
 }
 
 // function init() {
