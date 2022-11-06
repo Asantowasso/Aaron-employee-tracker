@@ -15,8 +15,8 @@ const connection = mysql.createConnection({
 });
 
 const userOptions = () => {
-  inquirer.prompt([
-    {
+  inquirer.prompt({
+    
       name: "options",
       type: "list",
       message: "select an option",
@@ -28,8 +28,12 @@ const userOptions = () => {
         "add a role",
         "Update an employee role",
       ],
-    },
-  ])
+    
+        })
+        .then(function (answer){
+          if(answer.options === "view all departments")
+          showDeparatments();
+        })
 };
 userOptions();
 
