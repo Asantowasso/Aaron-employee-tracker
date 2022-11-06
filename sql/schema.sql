@@ -13,3 +13,12 @@ CREATE TABLE department (
     d_name VARCHAR(30) NOT NULL
 
 );
+
+-- role table with job title, role id, department and salary --
+
+CREATE TABLE role (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+j_title VARCHAR(30) NOT NULL,
+d_id INT NOT NULL,
+salary DECIMAL (10,2)
+)
