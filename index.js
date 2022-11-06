@@ -1,8 +1,7 @@
 //First, give the following options view all departments, all roles, all employees, add a department, add a role and update an employee role(x)
 // view all departments is choses and I see a table with department names and ids
-
+const mysql = require('mysql12')
 const inquirer = require("inquirer");
-var mysql = require 
 const userOptions = () => {
   inquirer.prompt([
     {
