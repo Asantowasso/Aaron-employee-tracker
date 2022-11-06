@@ -1,6 +1,7 @@
 //First, give the following options view all departments, all roles, all employees, add a department, add a role and update an employee role(x)
-// view all departments is chosen and I see a table with department names and ids
-// view all roles is chosen and I see and I see a table with a job title, role id, department the role belongs to as well as the salary
+// view all departments is chosen and I see a table with department names and ids(x)
+// view all roles is chosen and I see and I see a table with a job title, role id, department the role belongs to as well as the salary(x)
+// view all employees is chosen I see employee ids, first names, last names, job titles, departments, salaries and manager ids
 
 const mysql = require('mysql2')
 const inquirer = require("inquirer");
@@ -46,10 +47,13 @@ const userOptions = () => {
             case "view all roles":
               viewRoles();
               break;
+
+            case "view all employees":
+              viewEmployees();
+              break;
           }
         })
 };
-// userOptions();
 
 function viewDepartments(){
   var query = "SELECT id, d_name FROM department";
@@ -57,9 +61,7 @@ function viewDepartments(){
   connection.query(query,function (error, results) {
     console.table(results)
     userOptions()
-    // error will be an Error if one occurred during the query
-    // results will contain the results of the query
-    // fields will contain information about the returned results fields (if any)
+    
   });
 
 }
@@ -74,12 +76,12 @@ function viewRoles(){
 
 }
 
-// function init() {
-//     inquirer.prompt(userOptions)
-//     .then ((inquirerResponse) => {
-//     console.log(inquirerResponse)
+function viewEmployees(){
+  //I need 1. employee ids(id)(x), 2.first name(employee)(x), 3. last name(employee)(x) 4. j_title (role), 5. d_name(department), salary(role), 6. manager_id(employee)(x)
+  var query = "SELECT employee.id, first_name, last_name, manager_id FROM employee"
 
-// })
-// }
-// // Function call to initialize app
-// init()
+  connection.query(query, function (err, results){
+    console.table(results)
+  })
+}
+
