@@ -1,4 +1,4 @@
-USE org_db
+USE org_db;
 
 INSERT INTO department (id, d_name)
 VALUES

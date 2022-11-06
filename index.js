@@ -1,11 +1,23 @@
 //First, give the following options view all departments, all roles, all employees, add a department, add a role and update an employee role(x)
-// view all departments is choses and I see a table with department names and ids
-const mysql = require('mysql12')
+// view all departments is chosen and I see a table with department names and ids
+
+const mysql = require('mysql2')
 const inquirer = require("inquirer");
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+
+
+  user: 'root',
+
+  password: 'password',
+  database: 'org_db'
+});
+
 const userOptions = () => {
   inquirer.prompt([
     {
-      name: "A list of options",
+      name: "options",
       type: "list",
       message: "select an option",
       choices: [
@@ -17,7 +29,7 @@ const userOptions = () => {
         "Update an employee role",
       ],
     },
-  ]);
+  ])
 };
 userOptions();
 
