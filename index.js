@@ -3,7 +3,7 @@
 // view all roles is chosen and I see and I see a table with a job title, role id, department the role belongs to as well as the salary(x)
 // view all employees is chosen I see employee ids, first names, last names, job titles, departments, salaries and manager ids
 // Add a department is chosen and I enter the department's name and it is added to the department table(x)
-//
+// Add a role is chosen and I enter the name, salary and department
 
 
 const mysql = require('mysql2')
@@ -58,6 +58,10 @@ const userOptions = () => {
             case "Add a department":
               addDepartment();
               break;
+
+            case "add a role":
+              addRole();
+              break;
           }
         })
 };
@@ -106,3 +110,29 @@ function addDepartment(){
     userOptions()
   })
 }
+
+function addRole(){
+  inquirer.prompt([
+    {
+      type: "input",
+      name: "addTitle",
+      message:"What is the role called?"
+
+    },
+
+    {
+      type:"input",
+      name: "addSalary",
+      message: "What is this role's salary"
+    },
+
+    {
+      type: "input",
+      name: "addDepartmentid",
+      Message: "what is the ID for this department"
+    }
+    
+  ])
+
+}
+
