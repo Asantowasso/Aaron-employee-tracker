@@ -89,7 +89,7 @@ function viewRoles(){
 
 function viewEmployees(){
   //I need 1. employee ids(id)(x), 2.first name(employee)(x), 3. last name(employee)(x) 4. j_title (role), 5. d_name(department), salary(role), 6. manager_id(employee)(x)
-  var query = "SELECT employee.id, employee.first_name, employee.last_name, role.salary, role.j_title employee.manager_id FROM employee JOIN role"
+  var query = "SELECT employee.id, employee.first_name, employee.last_name, role.salary, role.j_title, employee.manager_id, department.d_name FROM employee JOIN role ON role_id = role.id JOIN department ON d_id = department.id"
 
   connection.query(query, function (err, results){
     console.table(results)
@@ -132,7 +132,14 @@ function addRole(){
       Message: "what is the ID for this department"
     }
     
-  ])
+  ]).then(function(answer, results){
+    connection.query("INSERT INTO department SET ?", {j_title: answer.addRole, salary: answer.addRole, d_id: answer.addRole},
+
+    console.table(results)
+
+    )
+    userOptions()
+  })
 
 }
 
