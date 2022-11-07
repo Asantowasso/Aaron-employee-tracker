@@ -2,6 +2,7 @@
 // view all departments is chosen and I see a table with department names and ids(x)
 // view all roles is chosen and I see and I see a table with a job title, role id, department the role belongs to as well as the salary(x)
 // view all employees is chosen I see employee ids, first names, last names, job titles, departments, salaries and manager ids
+// Add a department is chosen and I enter the department's name and it is added to the department table
 
 const mysql = require('mysql2')
 const inquirer = require("inquirer");
@@ -51,6 +52,10 @@ const userOptions = () => {
             case "view all employees":
               viewEmployees();
               break;
+
+            case "Add a department":
+              addDepartment();
+              break;
           }
         })
 };
@@ -78,10 +83,22 @@ function viewRoles(){
 
 function viewEmployees(){
   //I need 1. employee ids(id)(x), 2.first name(employee)(x), 3. last name(employee)(x) 4. j_title (role), 5. d_name(department), salary(role), 6. manager_id(employee)(x)
-  var query = "SELECT employee.id, first_name, last_name, manager_id FROM employee"
+  var query = "SELECT employee.id, employee.first_name, employee.last_name, role.salary, role.j_title employee.manager_id FROM employee JOIN role"
 
   connection.query(query, function (err, results){
     console.table(results)
   })
 }
 
+function addDepartment(){
+  inquirer.prompt({
+    type: "input",
+    name: "addDepartment",
+    message: "What is the department called?"
+  }).then(function (answer, results){
+    connection.query("INSERT INTO department SET ?",{d_name: answer.department},
+    console.table(results)
+      
+    )
+  })
+}
