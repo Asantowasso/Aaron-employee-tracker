@@ -157,19 +157,19 @@ function addEmployee(){
   inquirer.prompt([
     {
       type: "input",
-      name: "fName",
+      name: "addFName",
       Message: "What is the employee's first name?"
     },
 
     {
       type: "input",
-      name: "Lname",
+      name: "addLname",
       Message: "What is the employee's last name?"
     },
 
     {
       type: "input",
-      name: "roleid",
+      name: "addroleid",
       message: "What is the id of the employee's role?"
     },
 
@@ -180,7 +180,7 @@ function addEmployee(){
     }
 
   ]).then(function (answer, results){
-    connection.query("INSERT INTO department SET ?",{d_name: answer.addDepartment},
+    connection.query("INSERT INTO employee SET ?",{first_name: answer.addFname, last_name: answer.addLname, role_id: answer.addroleid, manager_id: answer.managerid},
     
     console.table(results)
       
