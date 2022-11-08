@@ -1,9 +1,10 @@
 //First, give the following options view all departments, all roles, all employees, add a department, add a role and update an employee role(x)
 // view all departments is chosen and I see a table with department names and ids(x)
 // view all roles is chosen and I see and I see a table with a job title, role id, department the role belongs to as well as the salary(x)
-// view all employees is chosen I see employee ids, first names, last names, job titles, departments, salaries and manager ids
+// view all employees is chosen I see employee ids, first names, last names, job titles, departments, salaries and manager ids(x)
 // Add a department is chosen and I enter the department's name and it is added to the department table(x)
-// Add a role is chosen and I enter the name, salary and department
+// Add a role is chosen and I enter the name, salary and department(x)
+// Add a employee is chosen and I enter first name, last name, role and manager
 
 
 const mysql = require('mysql2')
@@ -37,6 +38,7 @@ const userOptions = () => {
         "view all employees",
         "Add a department",
         "add a role",
+        "add an employee",
         "Update an employee role",
       ],
     
@@ -61,6 +63,14 @@ const userOptions = () => {
 
             case "add a role":
               addRole();
+              break;
+
+            case "add an employee":
+              addEmployee();
+              break;
+
+            case "Update an employee role":
+              updateRole();
               break;
           }
         })
@@ -88,7 +98,7 @@ function viewRoles(){
 }
 
 function viewEmployees(){
-  //I need 1. employee ids(id)(x), 2.first name(employee)(x), 3. last name(employee)(x) 4. j_title (role), 5. d_name(department), salary(role), 6. manager_id(employee)(x)
+  //I need 1. employee ids(id)(x), 2.first name(employee)(x), 3. last name(employee)(x) 4. j_title (role)(x), 5. d_name(department)(x), salary(role)(x), 6. manager_id(employee)(x)
   var query = "SELECT employee.id, employee.first_name, employee.last_name, role.salary, role.j_title, employee.manager_id, department.d_name FROM employee JOIN role ON role_id = role.id JOIN department ON d_id = department.id"
 
   connection.query(query, function (err, results){
@@ -128,12 +138,12 @@ function addRole(){
 
     {
       type: "input",
-      name: "addDepartmentid",
+      name: "addDid",
       Message: "what is the ID for this department"
     }
     
   ]).then(function(answer, results){
-    connection.query("INSERT INTO department SET ?", {j_title: answer.addRole, salary: answer.addRole, d_id: answer.addRole},
+    connection.query("INSERT INTO role SET ?", {j_title: answer.addTitle, d_id: answer.addDid, salary: answer.addSalary},
 
     console.table(results)
 
@@ -142,4 +152,41 @@ function addRole(){
   })
 
 }
+
+function addEmployee(){
+  inquirer.prompt([
+    {
+      type: "input",
+      name: "fName",
+      Message: "What is the employee's first name?"
+    },
+
+    {
+      type: "input",
+      name: "Lname",
+      Message: "What is the employee's last name?"
+    },
+
+    {
+      type: "input",
+      name: "roleid",
+      message: "What is the id of the employee's role?"
+    },
+
+    {
+      type: "input",
+      name: "managerid",
+      message:"What is the id of the employee's manager?"
+    }
+
+  ]).then(function (answer, results){
+    connection.query("INSERT INTO department SET ?",{d_name: answer.addDepartment},
+    
+    console.table(results)
+      
+    )
+    userOptions()
+  })
+}
+
 
