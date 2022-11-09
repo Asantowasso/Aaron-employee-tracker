@@ -4,8 +4,8 @@
 // view all employees is chosen I see employee ids, first names, last names, job titles, departments, salaries and manager ids(x)
 // Add a department is chosen and I enter the department's name and it is added to the department table(x)
 // Add a role is chosen and I enter the name, salary and department(x)
-// Add a employee is chosen and I enter first name, last name, role and manager
-// Update an employee role is chosen and I select an employee and update their role info in the table
+// Add a employee is chosen and I enter first name, last name, role and manager(x)
+// Update an employee role is chosen and I select an employee and update their role info in the table(x)
 
 const mysql = require('mysql2')
 const inquirer = require("inquirer");
@@ -203,13 +203,12 @@ function updateRole(){
       message: "What is the new Role ID for this employee?"
     }
   ]).then(function(answer, results){
-
   
-    connection.query("UPDATE employee SET ? WHERE ?",
-      {first_name: answer.whoUpdate,role_id: answer.updatedRole},
+    connection.query('UPDATE employee SET ? WHERE ?',
+      [{ role_id: answer.updatedRole},{first_name: answer.whoUpdate}])
         console.table(results)
 
-    )
+  
     userOptions()
 })
 }
