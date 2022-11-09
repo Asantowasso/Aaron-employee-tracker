@@ -10,6 +10,7 @@
 const mysql = require('mysql2')
 const inquirer = require("inquirer");
 
+
 var connection = mysql.createConnection({
   host: 'localhost',
 
@@ -104,6 +105,7 @@ function viewEmployees(){
   connection.query(query, function (err, results){
     console.table(results)
   })
+  userOptions()
 }
 
 function addDepartment(){
@@ -111,10 +113,15 @@ function addDepartment(){
     type: "input",
     name: "addDepartment",
     message: "What is the department called?"
-  }).then(function (answer, results){
-    connection.query("INSERT INTO department SET ?",{d_name: answer.addDepartment},
+  }).then(function (answer){
+    connection.query("INSERT INTO department (d_name) VALUES (?)", answer.addDepartment, (error, results)=>{
     
-    console.table(results)
+        console.log("\n")
+
+    console.table(results)  
+    }
+    
+    
       
     )
     userOptions()
