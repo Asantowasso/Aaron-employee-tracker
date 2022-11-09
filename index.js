@@ -170,13 +170,13 @@ function addEmployee(){
     {
       type: "input",
       name: "addroleid",
-      message: "What is the id of the employee's role?"
+      message: "What is the id of the employee's role? (answer must be a number)"
     },
 
     {
       type: "input",
       name: "addmanagerid",
-      message:"What is the id of the employee's manager?"
+      message:"What is the id of the employee's manager? (answer must be a number)"
     }
 
   ]).then(function (answer, results){
@@ -189,4 +189,28 @@ function addEmployee(){
   })
 }
 
+function updateRole(){
+  inquirer.prompt([
+    {
+      type: "input",
+      name: "whoUpdate",
+      message:"What is the first name of the employee that is being updated?"
+    },
+
+    {
+      type: "input",
+      name: "updatedRole",
+      message: "What is the new Role ID for this employee?"
+    }
+  ]).then(function(answer, results){
+
+  
+    connection.query("UPDATE employee SET ? WHERE ?",
+      {first_name: answer.whoUpdate,role_id: answer.updatedRole},
+        console.table(results)
+
+    )
+    userOptions()
+})
+}
 
