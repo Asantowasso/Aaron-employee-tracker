@@ -5,7 +5,7 @@
 // Add a department is chosen and I enter the department's name and it is added to the department table(x)
 // Add a role is chosen and I enter the name, salary and department(x)
 // Add a employee is chosen and I enter first name, last name, role and manager
-
+// Update an employee role is chosen and I select an employee and update their role info in the table
 
 const mysql = require('mysql2')
 const inquirer = require("inquirer");
@@ -157,7 +157,7 @@ function addEmployee(){
   inquirer.prompt([
     {
       type: "input",
-      name: "addFName",
+      name: "addFname",
       Message: "What is the employee's first name?"
     },
 
@@ -175,12 +175,12 @@ function addEmployee(){
 
     {
       type: "input",
-      name: "managerid",
+      name: "addmanagerid",
       message:"What is the id of the employee's manager?"
     }
 
   ]).then(function (answer, results){
-    connection.query("INSERT INTO employee SET ?",{first_name: answer.addFname, last_name: answer.addLname, role_id: answer.addroleid, manager_id: answer.managerid},
+    connection.query("INSERT INTO employee SET ?",{first_name: answer.addFname, last_name: answer.addLname, role_id: answer.addroleid, manager_id: answer.addmanagerid},
     
     console.table(results)
       
