@@ -10,3 +10,4 @@ Can be used by the administrator at an organization to view their current staff 
 <img src = "assets/Employee SQL.jpg">
 
 ## Video demonstration
+Video: https://drive.google.com/file/d/1xTtY_pY-7LBtEnD_nKufaq3yCVzjhQzu/view
