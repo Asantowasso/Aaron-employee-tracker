@@ -7,6 +7,6 @@ The employee tracker is a command line application powered by a SQL database. Th
 Can be used by the administrator at an organization to view their current staff rosters and make changes as are needed. The user interface is easy to navigate and allows the user to see their changes as soon as they have made them.
 
 ## Image
-<img src = "assets/Employee SQL,jpg">
+<img src = "assets/Employee SQL.jpg">
 
 ## Video demonstration
